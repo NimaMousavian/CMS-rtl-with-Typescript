@@ -1,7 +1,7 @@
 import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import faIRGrid from "../utils/faIrGridText";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import FilterPassengers from "./FilterPassengers";
 
 const columns: GridColDef[] = [
@@ -39,7 +39,7 @@ const Passengers = () => {
   return (
     <>
       <FilterPassengers />
-      <div className="w-full">
+      <div className="w-full shadow-md">
         <Typography variant="h6" gutterBottom>
           لیست مسافران
         </Typography>
@@ -55,6 +55,22 @@ const Passengers = () => {
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
+      </div>
+      <div className="flex flex-row justify-between mt-5">
+        <div className="flex flex-row gap-3">
+          <Button variant="contained">ثبت جدید</Button>
+          <Button variant="contained" color="secondary">
+            دانلود فایل اکسل
+          </Button>
+          <Button variant="contained" color="secondary">
+            درون ریزی
+          </Button>
+        </div>
+        <div>
+          <Button variant="contained" color="info">
+            بازگشت
+          </Button>
+        </div>
       </div>
     </>
   );
