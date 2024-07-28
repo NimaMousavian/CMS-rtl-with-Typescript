@@ -106,7 +106,7 @@ const AdvancedModal: FC<Props> = ({
           onClick={handleClose}
           sx={{
             position: "absolute",
-            left: 8,
+            right: 8,
             top: 8,
             color: (theme) => theme.palette.grey[500],
           }}
