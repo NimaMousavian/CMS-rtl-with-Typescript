@@ -22,11 +22,11 @@ const theme = createTheme({
   },
     palette: {
     primary: {
-      light: '#757ce8',
+      light: '#a66fff',
       main: '#751aff',
-      dark: '#002884',
+      dark: '#5503f0',
       contrastText: '#fff',
-      lighter: "#b3ccff"
+      lighter: "#dac4ff"
     },
     secondary: {
       light: '#ecb3ff',
@@ -41,9 +41,6 @@ const theme = createTheme({
       contrastText: '#fff',
     },
   },
-  //   status: {
-  //   cancel: "#bbcff2",
-  // },
 });
 
 declare module '@mui/material/styles' {
@@ -63,38 +60,12 @@ declare module '@mui/material/styles' {
   }
 }
 
-
-// declare module '@mui/material/styles/createPalette' {
-//   interface Palette {
-//     cancel: Palette['primary'];
-//     // twitter: Palette['primary'];
-//   }
-//   interface PaletteOptions {
-//     cancel?: PaletteOptions['primary'];
-//     // twitter: PaletteOptions['primary'];
-//   }
-// }
-
-
-
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
    cancel: true;
   }
 }
-// declare module '@mui/material/styles' {
-//   interface Theme {
-//     status: {
-//       cancel: string;
-//     };
-//   }
-//   // allow configuration using `createTheme`
-//   interface ThemeOptions {
-//     status?: {
-//       cancel?: string;
-//     };
-//   }
-// }
+
 
 
 
