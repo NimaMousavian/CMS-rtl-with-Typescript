@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: "Yekan-Bakh",-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +14,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@layer base {
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @font-face {
@@ -52,4 +65,8 @@ code {
   font-style: normal;
   font-weight: 800;
   src: url("./fonts/Yekan-Bakh/Yekan\ Bakh\ EN\ 08\ Fat.woff") format("woff");
+}
+
+input:focus {
+  outline: none;
 }
