@@ -13,6 +13,7 @@ import { prefixer } from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import routes from "./routes";
 import "./App.css";
+import BreadCrumbs from "./components/BreadCrumbs";
 
 const cacheRtl = createCache({
   key: "muirtl",
@@ -34,6 +35,7 @@ function App() {
               sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
             >
               <Toolbar />
+              <BreadCrumbs />
               {router}
             </Box>
           </Box>

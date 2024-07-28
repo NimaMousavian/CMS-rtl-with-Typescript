@@ -1,6 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { Color, Palette, PaletteOptions } from '@mui/material';
-import { cancel } from './../node_modules/dom-helpers/esm/animationFrame';
 
 
 const theme = createTheme({

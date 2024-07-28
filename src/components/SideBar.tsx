@@ -21,7 +21,7 @@ interface ListItem {
 }
 
 const listItems: ListItem[] = [
-  { id: 1, title: "صفحه ی اصلی", link: "/home" },
+  { id: 1, title: "صفحه ی اصلی", link: "/" },
   { id: 2, title: "محصولات", link: "/products" },
   { id: 3, title: "کاربران", link: "/users" },
   { id: 4, title: "نظرات", link: "/comments" },
