@@ -60,7 +60,7 @@ const SideBar = () => {
                     {item.id % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
                   <ListItemText
-                    sx={{ textAlign: "right" }}
+                    sx={{ textAlign: "left" }}
                     primary={item.title}
                   />
                 </ListItemButton>

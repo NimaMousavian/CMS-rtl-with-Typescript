@@ -1,6 +1,8 @@
 import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import faIRGrid from "../utils/faIrGridText";
+import { Typography } from "@mui/material";
+import FilterPassengers from "./FilterPassengers";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -35,21 +37,26 @@ const rows = [
 ];
 const Passengers = () => {
   return (
-    <div className="w-full" dir="rtl">
-      Passengers
-      <DataGrid
-        localeText={faIRGrid}
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
+    <>
+      <FilterPassengers />
+      <div className="w-full">
+        <Typography variant="h6" gutterBottom>
+          لیست مسافران
+        </Typography>
+        <DataGrid
+          localeText={faIRGrid}
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      </div>
+    </>
   );
 };
 
