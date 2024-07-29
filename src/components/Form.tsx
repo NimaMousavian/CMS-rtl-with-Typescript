@@ -246,8 +246,9 @@ const Form = () => {
             />
 
             <div className="mt-4">
-              <Button variant="contained">ارسال</Button>
-              <input type="submit" />
+              <Button variant="contained" type="submit">
+                ارسال
+              </Button>
             </div>
           </form>
         </div>

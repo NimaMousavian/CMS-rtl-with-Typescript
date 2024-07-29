@@ -69,7 +69,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 interface Props {
   title: string;
   description: string;
-  ApproveButton: string;
+  buttonTitle: string;
+  approveButton: string;
+  cancelButton?: string;
   theme: ColorTheme;
   onApprove: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -77,7 +79,9 @@ interface Props {
 const AdvancedModal: FC<Props> = ({
   title,
   description,
-  ApproveButton,
+  buttonTitle,
+  approveButton,
+  cancelButton = "لغو",
   theme,
   onApprove,
 }) => {
@@ -94,7 +98,7 @@ const AdvancedModal: FC<Props> = ({
   return (
     <React.Fragment>
       <Button variant="contained" onClick={handleClickOpen}>
-        مدال پیشرفته
+        {buttonTitle}
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -137,7 +141,7 @@ const AdvancedModal: FC<Props> = ({
             color={theme}
             variant="contained"
           >
-            {ApproveButton}
+            {approveButton}
             {createIcon(theme)}
           </Button>
           <Button
@@ -147,7 +151,7 @@ const AdvancedModal: FC<Props> = ({
             onClick={handleClose}
             variant="contained"
           >
-            لغو
+            {cancelButton}
           </Button>
         </DialogActions>
       </BootstrapDialog>

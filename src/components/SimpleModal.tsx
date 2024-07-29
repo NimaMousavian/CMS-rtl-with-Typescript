@@ -57,6 +57,7 @@ interface Props {
   title: string;
   description: string;
   buttonTitle: string;
+  innerButtonTitle: string;
   theme: ColorTheme;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -65,6 +66,7 @@ const SimpleModal: FC<Props> = ({
   title,
   description,
   buttonTitle,
+  innerButtonTitle,
   theme,
   onClick,
 }) => {
@@ -80,7 +82,7 @@ const SimpleModal: FC<Props> = ({
   return (
     <React.Fragment>
       <Button variant="contained" onClick={handleClickOpen}>
-        مدال ساده
+        {buttonTitle}
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -118,7 +120,7 @@ const SimpleModal: FC<Props> = ({
           }}
         >
           <Button autoFocus onClick={onClick} color={theme} variant="contained">
-            {buttonTitle}
+            {innerButtonTitle}
             {createIcon(theme)}
           </Button>
         </DialogActions>

@@ -205,9 +205,9 @@ const FilterPassengers = () => {
           <Typography sx={{ fontWeight: "bold" }}>فیلتر اطلاعات</Typography>
         </AccordionSummary>
         <Divider />
-        <AccordionDetails sx={{ padding: "2rem", marginTop: "1rem" }}>
+        <AccordionDetails sx={{ marginTop: "1rem" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2} sx={{ pb: 3 }}>
+            <Grid container spacing={2} sx={{ p: 3 }}>
               {gridItems.map((item) => (
                 <Grid item xs={12} lg={6} key={item.id}>
                   <div className="flex flex-row justify-between">
