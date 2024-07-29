@@ -88,6 +88,9 @@ const SimpleModal: FC<Props> = ({
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        PaperProps={{
+          sx: { borderRadius: "18px", bgcolor: createBgColor(theme) },
+        }}
       >
         <IconButton
           aria-label="close"
@@ -105,7 +108,6 @@ const SimpleModal: FC<Props> = ({
           sx={{
             m: 0,
             p: 2,
-            bgcolor: createBgColor(theme),
           }}
           id="customized-dialog-title"
         >

@@ -104,6 +104,7 @@ const AdvancedModal: FC<Props> = ({
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        PaperProps={{ sx: { borderRadius: "18px" } }}
       >
         <IconButton
           aria-label="close"
