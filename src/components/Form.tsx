@@ -1,10 +1,5 @@
-import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import FilledInput from "@mui/material/FilledInput";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
+import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { z, ZodType } from "zod";
 import { useForm, Controller } from "react-hook-form";
@@ -35,14 +30,6 @@ function removeLeadingZerosIterative(str: string) {
 }
 
 const Form = () => {
-  // const [data, setData] = useState({});
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobilePhone, setMobilePhone] = useState("");
-  const [phone, setPhone] = useState("");
-  const [nationalCode, setNationalCode] = useState("");
-  const [message, setMessage] = useState("");
-
   interface FormData {
     name: string;
     email: string;
@@ -108,6 +95,13 @@ const Form = () => {
                   label="نام"
                   error={!!errors.name}
                   helperText={errors.name?.message}
+                  FormHelperTextProps={{
+                    sx: { fontSize: "18px" },
+                  }}
+                  inputProps={{
+                    sx: { fontSize: "20px" },
+                  }}
+                  InputLabelProps={{ sx: { fontSize: "15px" } }}
                 />
               )}
             />
@@ -126,6 +120,13 @@ const Form = () => {
                     sx={{ width: "25em" }}
                     error={!!errors.email}
                     helperText={errors.email?.message}
+                    FormHelperTextProps={{
+                      sx: { fontSize: "18px" },
+                    }}
+                    inputProps={{
+                      sx: { fontSize: "20px" },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "15px" } }}
                   />
                 )}
               />
@@ -142,6 +143,13 @@ const Form = () => {
                     sx={{ width: "25em" }}
                     error={!!errors.mobilePhone}
                     helperText={errors.mobilePhone?.message}
+                    FormHelperTextProps={{
+                      sx: { fontSize: "18px" },
+                    }}
+                    inputProps={{
+                      sx: { fontSize: "20px" },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "15px" } }}
                   />
                 )}
               />
@@ -158,6 +166,13 @@ const Form = () => {
                     sx={{ width: "25em" }}
                     error={!!errors.phone}
                     helperText={errors.phone?.message}
+                    FormHelperTextProps={{
+                      sx: { fontSize: "18px" },
+                    }}
+                    inputProps={{
+                      sx: { fontSize: "20px" },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "15px" } }}
                   />
                 )}
               />
@@ -174,6 +189,13 @@ const Form = () => {
                     sx={{ width: "25em" }}
                     error={!!errors.nationalCode}
                     helperText={errors.nationalCode?.message}
+                    FormHelperTextProps={{
+                      sx: { fontSize: "18px" },
+                    }}
+                    inputProps={{
+                      sx: { fontSize: "20px" },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "15px" } }}
                   />
                 )}
               />
@@ -184,11 +206,6 @@ const Form = () => {
                   <TextField
                     {...field}
                     type="text"
-                    onBlur={(e) => {
-                      let regex = new RegExp("/^۰+(?=d)/");
-                      let x = e.target.value.replace(/^\u06F0+(?=d)/, "");
-                      console.log(x);
-                    }}
                     value={ToRial(removeLeadingZerosIterative(field.value))}
                     id="outlined-controlled"
                     color="primary"
@@ -196,6 +213,14 @@ const Form = () => {
                     sx={{ width: "25em" }}
                     error={!!errors.price}
                     helperText={errors.price?.message}
+                    inputProps={{
+                      sx: { fontSize: "18px" },
+                      dir: "ltr",
+                    }}
+                    FormHelperTextProps={{
+                      sx: { fontSize: "18px" },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "15px" } }}
                   />
                 )}
               />
@@ -215,6 +240,13 @@ const Form = () => {
                   minRows={6}
                   error={!!errors.message}
                   helperText={errors.message?.message}
+                  FormHelperTextProps={{
+                    sx: { fontSize: "18px" },
+                  }}
+                  inputProps={{
+                    sx: { fontSize: "20px" },
+                  }}
+                  InputLabelProps={{ sx: { fontSize: "15px" } }}
                 />
               )}
             />
