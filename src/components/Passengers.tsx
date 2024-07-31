@@ -1,18 +1,22 @@
-import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import faIRGrid from "../utils/faIrGridText";
 import { Button, Typography } from "@mui/material";
 import FilterPassengers from "./FilterPassengers";
+import toPersianDigits from "../utils/toPersianDigit";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "id",
+    headerName: "ID",
+    width: 70,
+    valueGetter: (value, row) => toPersianDigits(row.id),
+  },
   { field: "firstName", headerName: "نام", width: 130 },
   { field: "lastName", headerName: "نام خانوادگی", width: 130 },
   {
     field: "age",
     headerName: "سن",
-    type: "number",
     width: 90,
+    valueGetter: (value, row) => toPersianDigits(row.age),
   },
   {
     field: "fullName",
@@ -44,7 +48,7 @@ const Passengers = () => {
           لیست مسافران
         </Typography>
         <DataGrid
-          localeText={faIRGrid}
+          // localeText={faIRGrid}
           rows={rows}
           columns={columns}
           initialState={{

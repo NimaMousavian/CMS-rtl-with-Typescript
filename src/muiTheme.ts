@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+import { 	faIR } from '@mui/x-date-pickers/locales';
+import { faIR as DataGridfaIR } from '@mui/x-data-grid/locales';
 
 
 const theme = createTheme({
@@ -39,7 +41,8 @@ const theme = createTheme({
       contrastText: '#fff',
     },
   },
-});
+  
+},faIR,DataGridfaIR);
 
 declare module '@mui/material/styles' {
   interface PaletteColor {

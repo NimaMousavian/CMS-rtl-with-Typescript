@@ -1,12 +1,10 @@
-import React, { cloneElement } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import { TextField, Grid, Divider, Box, Button } from "@mui/material";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 
 interface GridItem {
@@ -61,7 +59,6 @@ const FilterPassengers = () => {
               {...field}
               id="fullName"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -81,7 +78,6 @@ const FilterPassengers = () => {
               {...field}
               id="nationalCode"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -101,7 +97,6 @@ const FilterPassengers = () => {
               {...field}
               id="organization"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -121,7 +116,6 @@ const FilterPassengers = () => {
               {...field}
               id="section"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -141,7 +135,6 @@ const FilterPassengers = () => {
               {...field}
               id="mobilePhone"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -161,7 +154,6 @@ const FilterPassengers = () => {
               {...field}
               id="gender"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -181,7 +173,6 @@ const FilterPassengers = () => {
               {...field}
               id="shift"
               variant="outlined"
-              size="small"
               sx={{ marginRight: "10rem", width: "20rem" }}
             />
           )}
@@ -195,14 +186,21 @@ const FilterPassengers = () => {
     console.log("filter passenger data: ", data);
 
   return (
-    <div className="mb-7">
+    <div className="mb-7 w-full">
       <Accordion>
         <AccordionSummary
           expandIcon={<ArrowDropDownIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography sx={{ fontWeight: "bold" }}>فیلتر اطلاعات</Typography>
+          <div className="flex items-center">
+            <span className="rounded-full bg-primary-main p-3 text-slate-50 ml-5">
+              <FilterAltOutlinedIcon />
+            </span>
+            <Typography sx={{ fontWeight: "bold", fontSize: "17px" }}>
+              فیلتر اطلاعات
+            </Typography>
+          </div>
         </AccordionSummary>
         <Divider />
         <AccordionDetails sx={{ marginTop: "1rem" }}>
@@ -210,7 +208,7 @@ const FilterPassengers = () => {
             <Grid container spacing={2} sx={{ p: 3 }}>
               {gridItems.map((item) => (
                 <Grid item xs={12} lg={6} key={item.id}>
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-row justify-between items-center">
                     <Typography noWrap>{item.label}</Typography>
                     {item.innerElement}
                   </div>
