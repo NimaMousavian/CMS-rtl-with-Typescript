@@ -10,6 +10,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { grey } from "@mui/material/colors";
+import { alpha } from "@mui/material";
 
 const MainDrawer = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -67,7 +69,15 @@ const MainDrawer = () => {
       <Button onClick={toggleDrawer(true)} variant="contained">
         دراور
       </Button>
-      <Drawer anchor={"bottom"} open={isOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor={"bottom"}
+        open={isOpen}
+        onClose={toggleDrawer(false)}
+        ModalProps={{ sx: { bgcolor: alpha(grey[900], 0.7) } }}
+        PaperProps={{
+          sx: { borderTopLeftRadius: "30px", borderTopRightRadius: "30px" },
+        }}
+      >
         {list}
       </Drawer>
     </>
