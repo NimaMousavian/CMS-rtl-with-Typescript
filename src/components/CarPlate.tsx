@@ -78,10 +78,13 @@ const CarPlate: FC<Props> = ({ onSubmit }) => {
             isPublic ? "-public" : ""
           }.png")`,
           backgroundRepeat: "no-repeat",
+          fontFamily: "B Titr",
+          fontWeight: "bold",
+          fontSize: "40px",
         }}
       >
         <form
-          className="flex flex-row gap-2 justify-between items-center"
+          className="flex flex-row gap-2 justify-between items-center "
           // onSubmit={(e) => handleSubmit(e)}
         >
           <input
@@ -94,7 +97,7 @@ const CarPlate: FC<Props> = ({ onSubmit }) => {
               handleSubmit();
             }}
             maxLength={2}
-            className="w-12 h-9  p-3 text-xl rounded-md mr-1 mt-2 border border-slate-200 focus:border-slate-400"
+            className="w-12 h-9 text-center text-[25px] rounded-md mr-1 mt-2 border border-slate-200 focus:border-slate-400"
           />
           <input
             // {...register("postFix", { valueAsNumber: true })}
@@ -106,7 +109,7 @@ const CarPlate: FC<Props> = ({ onSubmit }) => {
               handleSubmit();
             }}
             maxLength={3}
-            className="w-16 h-10 p-3 text-xl rounded-md mr-2 border border-slate-200 focus:border-slate-400"
+            className="w-16 h-10 text-center text-[25px] rounded-md mr-2 border border-slate-200 focus:border-slate-400"
           />
           <input
             // {...register("char")}
@@ -121,7 +124,7 @@ const CarPlate: FC<Props> = ({ onSubmit }) => {
               handleSubmit();
             }}
             maxLength={1}
-            className="w-12 h-10 p-3 text-xl rounded-md border border-slate-200 focus:border-slate-400"
+            className="w-12 h-10 text-center text-[25px] rounded-md border border-slate-200 focus:border-slate-400"
           />
           <input
             // {...register("preFix", { valueAsNumber: true })}
@@ -133,7 +136,7 @@ const CarPlate: FC<Props> = ({ onSubmit }) => {
               handleSubmit();
             }}
             maxLength={2}
-            className="w-14 h-10 p-3 text-xl rounded-md ml-8 border border-slate-200 focus:border-slate-400"
+            className="w-14 h-10 text-center text-[25px] rounded-md ml-8 border border-slate-200 focus:border-slate-400"
           />
           {/* <input type="submit" value="تایید" /> */}
         </form>

@@ -67,6 +67,12 @@ code {
   src: url("./fonts/Yekan-Bakh/Yekan\ Bakh\ EN\ 08\ Fat.woff") format("woff");
 }
 
+@font-face {
+  font-family: "B Titr";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./fonts/B Titr/B\ Titr\ Bold.ttf") format("ttf");
+}
 input:focus {
   outline: none;
 }
