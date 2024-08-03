@@ -1,11 +1,15 @@
 import React from "react";
 import ErrorBox from "../components/ErrorBox";
-import SimpleModal from "../components/SimpleModal";
-import AdvancedModal from "../components/AdvancedModal";
+import SimpleModal from "../components/common/SimpleModal";
+import AdvancedModal from "../components/common/AdvancedModal";
 import Form from "../components/Form";
 import validateNationalCode from "../utils/nationalCodeVerify";
 import CarPlate from "../components/CarPlate";
-
+import Drawer from "../components/Drawer";
+import DateTimePicker from "../components/common/DateTimePicker";
+import TimePicker from "../components/common/TimePicker";
+import DatePicker from "../components/common/DatePicker";
+import TimeClock from "../components/common/TimeClock";
 interface CarPlateData {
   firstSegment: string;
   secondSegment: string;
@@ -22,6 +26,9 @@ const Home = () => {
   };
   const handleCarPlate = (data: CarPlateData) => {
     console.log("car plate data: ", data);
+  };
+  const handleDateTimePicker = (data: any) => {
+    console.log("dataTime picker data: ", data);
   };
   return (
     <>
@@ -48,10 +55,13 @@ const Home = () => {
           onApprove={handleAdvancedModal}
         />
         <CarPlate onSubmit={handleCarPlate} />
+        <DateTimePicker onAccept={handleDateTimePicker} />
+        <TimePicker />
+        <DatePicker />
+        <Drawer />
       </div>
-      <div className="w-1/2"></div>
+      <TimeClock />
       <Form />
-      {/* {console.log(validateNationalCode("7731689951"))} */}
     </>
   );
 };
