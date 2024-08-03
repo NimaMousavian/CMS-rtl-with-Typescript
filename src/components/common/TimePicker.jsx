@@ -5,6 +5,7 @@ import moment from "moment-jalaali";
 const TimePicker = () => {
   const [time, setTime] = useState(moment());
   moment.loadPersian({ dialect: "persian-modern" });
+  moment.loadPersian({ usePersianDigits: true });
   console.log(time);
   return (
     <>
