@@ -1,7 +1,25 @@
+// Theme
+import { ColDef } from "ag-grid-community";
+import { AgGridReact } from "ag-grid-react";
+import { AG_GRID_LOCALE_IR } from "@ag-grid-community/locale";
+// React Grid Logic
+// import "ag-grid-community/styles/ag-grid.css";
+// // Core CSS
+// import "ag-grid-community/styles/ag-theme-quartz.css";
+import { useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button, Typography } from "@mui/material";
 import FilterPassengers from "./FilterPassengers";
 import toPersianDigits from "../utils/toPersianDigit";
+// import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
+
+// Row Data Interface
+interface IRow {
+  id: number;
+  firstName: string;
+  lastName: string;
+  age: number;
+}
 
 const columns: GridColDef[] = [
   {
@@ -40,6 +58,38 @@ const rows = [
   { id: 9, lastName: "صادقی", firstName: "امیر", age: 33 },
 ];
 const Passengers = () => {
+  // Row Data: The data to be displayed.
+  const [rowData, setRowData] = useState<IRow[]>([
+    { id: 1, lastName: "احمدی", firstName: "علی", age: 30 },
+    { id: 2, lastName: "حسینی", firstName: "زهرا", age: 28 },
+    { id: 3, lastName: "رضایی", firstName: "محمد", age: 35 },
+    { id: 4, lastName: "موسوی", firstName: "فاطمه", age: 25 },
+    { id: 5, lastName: "کریمی", firstName: "حسن", age: 40 },
+    { id: 6, lastName: "نوری", firstName: "مریم", age: 32 },
+    { id: 7, lastName: "جعفری", firstName: "رضا", age: 29 },
+    { id: 8, lastName: "مرادی", firstName: "لیلا", age: 27 },
+    { id: 9, lastName: "صادقی", firstName: "امیر", age: 33 },
+  ]);
+
+  // Column Definitions: Defines the columns to be displayed.
+  const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
+    {
+      headerName: "ID",
+      field: "id",
+      rowDrag: true,
+      // filter: "agNumberColumnFilter",
+    },
+    { headerName: "نام", field: "firstName", filter: true },
+    { headerName: "نام خانوادگی", field: "lastName", filter: true },
+    {
+      headerName: "سن",
+      field: "age",
+      filter: true,
+      valueGetter: (p) => toPersianDigits(p.data?.age),
+    },
+  ]);
+
+  const localeText = AG_GRID_LOCALE_IR;
   return (
     <>
       <FilterPassengers />
@@ -59,6 +109,22 @@ const Passengers = () => {
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
+        <div
+          className="ag-theme-quartz" // applying the Data Grid theme
+          style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+        >
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={colDefs}
+            enableRtl={true}
+            rowDragManaged={true}
+            localeText={{ ...localeText, to: "تا" }}
+            rowSelection={"multiple"}
+            // pagination={true}
+            // paginationPageSize={10}
+            // paginationPageSizeSelector={[3, 5, 10, 20]}
+          />
+        </div>
       </div>
       <div className="flex flex-row justify-between mt-5">
         <div className="flex flex-row gap-3">
