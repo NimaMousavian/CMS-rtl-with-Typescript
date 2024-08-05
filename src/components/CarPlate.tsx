@@ -1,8 +1,4 @@
-import React, { useState, FC } from "react";
-import { z, ZodType } from "zod";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { prefix } from "stylis";
+import { useState, FC } from "react";
 
 interface CarPlateData {
   firstSegment: string;
@@ -16,20 +12,6 @@ interface Props {
 }
 
 const CarPlate: FC<Props> = ({ onSubmit }) => {
-  const initialValue = (): CarPlateData => {
-    const data: CarPlateData = {
-      firstSegment: "",
-      secondSegment: "",
-      thirdSegment: "",
-      fourthSegment: "",
-    };
-    return data;
-  };
-
-  const [data, setData] = useState<CarPlateData | undefined>(() =>
-    initialValue()
-  );
-
   const [firstSegment, setFirstSegment] = useState("");
   const [secondSegment, setSecondSegment] = useState("");
   const [thirdSegment, setThirdSegment] = useState("");

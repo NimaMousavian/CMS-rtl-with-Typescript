@@ -20,13 +20,13 @@ import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
-interface ListItem {
+interface IListItem {
   id: number;
   title: string;
   link: string;
 }
 
-const listItems: ListItem[] = [
+const listItems: IListItem[] = [
   { id: 1, title: "صفحه ی اصلی", link: "/" },
   { id: 2, title: "محصولات", link: "/products" },
   { id: 3, title: "کاربران", link: "/users" },
@@ -34,6 +34,7 @@ const listItems: ListItem[] = [
   { id: 5, title: "سفارش ها", link: "/orders" },
   { id: 6, title: "تخفیف ها", link: "/discounts" },
   { id: 7, title: "لیست مسافران", link: "/passengers" },
+  { id: 8, title: "نقشه", link: "/map" },
 ];
 
 interface Props {
@@ -128,7 +129,7 @@ const SideBar = ({ router, window }: Props) => {
             <Divider />
             <List>
               {listItems.map((item) => (
-                <Link to={item.link} className="link">
+                <Link key={item.id} to={item.link} className="link">
                   <ListItem key={item.id} disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
@@ -163,7 +164,7 @@ const SideBar = ({ router, window }: Props) => {
             <Divider />
             <List>
               {listItems.map((item) => (
-                <Link to={item.link} className="link">
+                <Link key={item.id} to={item.link} className="link">
                   <ListItem key={item.id} disablePadding>
                     <ListItemButton>
                       <ListItemIcon>

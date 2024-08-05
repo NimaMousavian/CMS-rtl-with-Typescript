@@ -4,7 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import { TextField, Grid, Divider, Box, Button } from "@mui/material";
+import { TextField, Grid, Divider, Button } from "@mui/material";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 
 interface GridItem {

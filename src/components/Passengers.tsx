@@ -1,17 +1,11 @@
-// Theme
 import { ColDef } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { AG_GRID_LOCALE_IR } from "@ag-grid-community/locale";
-// React Grid Logic
-// import "ag-grid-community/styles/ag-grid.css";
-// // Core CSS
-// import "ag-grid-community/styles/ag-theme-quartz.css";
 import { useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button, Typography } from "@mui/material";
 import FilterPassengers from "./FilterPassengers";
 import toPersianDigits from "../utils/toPersianDigit";
-// import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 
 // Row Data Interface
 interface IRow {
@@ -97,18 +91,20 @@ const Passengers = () => {
         <Typography variant="h6" gutterBottom>
           لیست مسافران
         </Typography>
-        <DataGrid
-          // localeText={faIRGrid}
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
+        <div style={{ height: 300 }}>
+          <DataGrid
+            // localeText={faIRGrid}
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+          />
+        </div>
         <div
           className="ag-theme-quartz" // applying the Data Grid theme
           style={{ height: 500 }} // the Data Grid will fill the size of the parent container
