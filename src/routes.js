@@ -5,6 +5,7 @@ import Users from "./pages/Users";
 import Orders from "./pages/Orders";
 import Discounts from "./pages/Discounts";
 import Passengers from "./components/Passengers";
+import Map from "./pages/Map";
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     path: "/passengers",
     element: <Passengers />,
     breadcrumb: "لیست مسافران",
+  },
+  {
+    path: "/map",
+    element: <Map />,
+    breadcrumb: "نقشه",
   },
 ];
 
