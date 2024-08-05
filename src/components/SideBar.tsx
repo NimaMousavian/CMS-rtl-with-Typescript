@@ -98,7 +98,14 @@ const SideBar = ({ router, window }: Props) => {
           <MenuRoundedIcon sx={{ fontSize: "inherit" }} />
         </IconButton>
       </Toolbar>
-      {/* حذف Divider */}
+      <Box
+        component="img"
+        src={open ? "/images/logo/logo-05.png" : "/images/logo/logo-01.png"}
+        alt="Menu Image"
+        sx={{
+          display: "block",
+        }}
+      />
       <List>
         {listItems.map((item) => (
           <ListItem disablePadding sx={{ display: "block" }} key={item.id}>
@@ -134,7 +141,7 @@ const SideBar = ({ router, window }: Props) => {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${open ? drawerWidth : closedDrawerWidth}px)` },
+          width: { sm: `calc(100% - ${open ? drawerWidth + 20 : closedDrawerWidth + 20}px)` },
           ml: { sm: `${open ? drawerWidth : closedDrawerWidth}px` },
         }}
       >
@@ -178,12 +185,11 @@ const SideBar = ({ router, window }: Props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: open ? drawerWidth : closedDrawerWidth,
-              margin: 3,
+              margin: 2,
               borderRadius: "16px",
-              border: "none",
-              boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+              border: "1px solid #ddd",
               overflowX: "hidden",
-              transition: "width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+              transition: "width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               height: `calc(100vh - 40px)`,
             },
           }}
