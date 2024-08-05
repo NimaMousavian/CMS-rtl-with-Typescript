@@ -20,10 +20,13 @@ const theme = createTheme({
         '"Helvetica Neue"',
     ].join(',')
   },
-    palette: {
+  palette: {
+    background: {
+        default: "#F1F6FA",
+      },
     primary: {
       light: '#a66fff',
-      main: '#751aff',
+      main: '#f48320',
       dark: '#5503f0',
       contrastText: '#fff',
       lighter: "#dac4ff"

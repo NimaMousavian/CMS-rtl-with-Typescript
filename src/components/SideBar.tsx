@@ -1,199 +1,211 @@
 import React from "react";
-import Divider from "@mui/material/Divider";
-import AppBar from "@mui/material/AppBar";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import CssBaseline from "@mui/material/CssBaseline";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import MailIcon from "@mui/icons-material/Mail";
-import List from "@mui/material/List";
-import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import BreadCrumbs from "./../components/BreadCrumbs";
-import { Box } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PeopleIcon from "@mui/icons-material/People";
+import CommentIcon from "@mui/icons-material/Comment";
+import OrderIcon from "@mui/icons-material/LocalShipping";
+import DiscountIcon from "@mui/icons-material/LocalOffer";
+import PassengerIcon from "@mui/icons-material/AirplanemodeActive";
+import MapIcon from "@mui/icons-material/Map";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import BreadCrumbs from "./BreadCrumbs";
+
 const drawerWidth = 240;
+const closedDrawerWidth = 73;
 
 interface ListItem {
   id: number;
   title: string;
   link: string;
+  icon: JSX.Element;
 }
 
 const listItems: ListItem[] = [
-  { id: 1, title: "صفحه ی اصلی", link: "/" },
-  { id: 2, title: "محصولات", link: "/products" },
-  { id: 3, title: "کاربران", link: "/users" },
-  { id: 4, title: "نظرات", link: "/comments" },
-  { id: 5, title: "سفارش ها", link: "/orders" },
-  { id: 6, title: "تخفیف ها", link: "/discounts" },
-  { id: 7, title: "لیست مسافران", link: "/passengers" },
+  { id: 1, title: "پیشخوان", link: "/", icon: <HomeIcon /> },
+  { id: 2, title: "محصولات", link: "/products", icon: <ShoppingCartIcon /> },
+  { id: 3, title: "کاربران", link: "/users", icon: <PeopleIcon /> },
+  { id: 4, title: "نظرات", link: "/comments", icon: <CommentIcon /> },
+  { id: 5, title: "سفارش ها", link: "/orders", icon: <OrderIcon /> },
+  { id: 6, title: "تخفیف ها", link: "/discounts", icon: <DiscountIcon /> },
+  { id: 7, title: "لیست مسافران", link: "/passengers", icon: <PassengerIcon /> },
+  { id: 8, title: "نقشه", link: "/map", icon: <MapIcon /> },
 ];
 
 interface Props {
-  router: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  > | null;
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
+  router: React.ReactElement<any, string | React.JSXElementConstructor<any>> | null;
   window?: () => Window;
 }
 
 const SideBar = ({ router, window }: Props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      if (isMobile) {
+        setMobileOpen(!mobileOpen);
+      } else {
+        setOpen(!open);
+      }
+    }
+  };
 
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
+    setOpen(false);
   };
 
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
   };
 
-  const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
-  };
+  const container = window !== undefined ? () => window().document.body : undefined;
 
-  // Remove this const when copying and pasting into your project.
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const drawer = (
+    <>
+      <Toolbar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: open ? "flex-start" : "center",
+          px: [1],
+        }}
+      >
+        <IconButton onClick={handleDrawerToggle} sx={{ fontSize: 20 }}>
+          <MenuRoundedIcon sx={{ fontSize: "inherit" }} />
+        </IconButton>
+      </Toolbar>
+      {/* حذف Divider */}
+      <List>
+        {listItems.map((item) => (
+          <ListItem disablePadding sx={{ display: "block" }} key={item.id}>
+            <ListItemButton
+              component={Link}
+              to={item.link}
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
 
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
+    <Box sx={{ display: "flex", height: "100vh" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${open ? drawerWidth : closedDrawerWidth}px)` },
+          ml: { sm: `${open ? drawerWidth : closedDrawerWidth}px` },
+        }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            داشبورد ادمین
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: open ? drawerWidth : closedDrawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerClose}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              margin: 2,
+              borderRadius: "16px",
+              border: "1px solid #ddd",
+            },
           }}
         >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h5" noWrap component="div">
-              داشبورد ادمین
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
-        >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onTransitionEnd={handleDrawerTransitionEnd}
-            onClose={handleDrawerClose}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            <Toolbar>
-              <Typography variant="h6" noWrap>
-                به داشبورد خود خوش آمدید
-              </Typography>
-            </Toolbar>
-            <Divider />
-            <List>
-              {listItems.map((item) => (
-                <Link to={item.link} className="link">
-                  <ListItem key={item.id} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        {item.id % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ textAlign: "left" }}
-                        primary={item.title}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            <Toolbar>
-              <Typography variant="h6" noWrap>
-                به داشبورد خود خوش آمدید
-              </Typography>
-            </Toolbar>
-            <Divider />
-            <List>
-              {listItems.map((item) => (
-                <Link to={item.link} className="link">
-                  <ListItem key={item.id} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        {item.id % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText
-                        sx={{ textAlign: "left" }}
-                        primary={item.title}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
+          {drawer}
+        </Drawer>
+        <Drawer
+          variant="permanent"
           sx={{
-            flexGrow: 1,
-            p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: open ? drawerWidth : closedDrawerWidth,
+              margin: 3,
+              borderRadius: "16px",
+              border: "none",
+              boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+              overflowX: "hidden",
+              transition: "width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+              height: `calc(100vh - 40px)`,
+            },
           }}
+          open={open}
         >
-          <Toolbar />
-          <BreadCrumbs />
-          {router}
-        </Box>
+          {drawer}
+        </Drawer>
       </Box>
-    </>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${open ? drawerWidth : closedDrawerWidth}px)` },
+          mt: 2,
+        }}
+      >
+        <Toolbar />
+        <BreadCrumbs />
+        {router}
+      </Box>
+    </Box>
   );
 };
 
