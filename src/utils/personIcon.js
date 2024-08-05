@@ -11,4 +11,4 @@ const icon3D = new L.Icon({
   iconSize: new L.Point(40, 45),
 });
 
-export { iconPerson, icon3D };
+export { icon3D };
