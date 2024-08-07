@@ -1,42 +1,24 @@
 import Home from "./pages/Home";
-import Products from "./pages/Products";
-import Comments from "./pages/Comments";
+
 import Users from "./pages/Users";
-import Orders from "./pages/Orders";
-import Discounts from "./pages/Discounts";
+
 import Passengers from "./components/Passengers";
 import Map from "./pages/Map";
+import Services from "./pages/Services";
+import Finance from "./pages/Finance";
+import Reports from "./pages/Reports";
+import Messaging from "./pages/Messaging";
+import Requests from "./pages/Requests";
+import BasicInfo from "./pages/BasicInfo";
+import Settings from "./pages/Settings";
+
+
 
 const routes = [
   {
     path: "/",
     element: <Home />,
-    breadcrumb: "صفحه‌ی اصلی",
-  },
-  {
-    path: "/products",
-    element: <Products />,
-    breadcrumb: "محصولات",
-  },
-  {
-    path: "/comments",
-    element: <Comments />,
-    breadcrumb: "نظرات",
-  },
-  {
-    path: "/users",
-    element: <Users />,
-    breadcrumb: "کاربران",
-  },
-  {
-    path: "/orders",
-    element: <Orders />,
-    breadcrumb: "سفارشات",
-  },
-  {
-    path: "/discounts",
-    element: <Discounts />,
-    breadcrumb: "تخفیف ها",
+    breadcrumb: "پیشخوان",
   },
   {
     path: "/passengers",
@@ -47,6 +29,46 @@ const routes = [
     path: "/map",
     element: <Map />,
     breadcrumb: "نقشه",
+  },
+  {
+    path: "/services",
+    element: <Services />,
+    breadcrumb: "سرویس ها",
+  },
+  {
+    path: "/finance",
+    element: <Finance />,
+    breadcrumb: "امور مالی",
+  },
+  {
+    path: "/reports",
+    element: <Reports />,
+    breadcrumb: "گزارش ها",
+  },
+  {
+    path: "/messaging",
+    element: <Messaging />,
+    breadcrumb: "پیام رسانی",
+  },
+  {
+    path: "/requests",
+    element: <Requests />,
+    breadcrumb: "درخواست ها",
+  },
+  {
+    path: "/basic-info",
+    element: <BasicInfo />,
+    breadcrumb: "اطلاعات پایه",
+  },
+  {
+    path: "/settings",
+    element: <Settings />,
+    breadcrumb: "تنظیمات",
+  },
+  {
+    path: "/users",
+    element: <Users />,
+    breadcrumb: "کاربران",
   },
 ];
 

@@ -24,7 +24,7 @@ const Logo: React.FC<LogoProps> = ({ logoSrc, onAnimationComplete }) => {
     initial: { opacity: 1, scale: 2, x: -100, y: -100, rotate: -30 },
     animate: {
       opacity: [0, 1, 1, 1],
-      x: [-100, 0, 0, isMobile? -90 :  -190], 
+      x: [-100, 0, 0, isMobile ? -90 : -190],
       y: [-100, 0, 0, 0],
       scale: [2, 1, 1, 1],
       rotate: [-30, 0, 0, 0],
@@ -37,7 +37,7 @@ const Logo: React.FC<LogoProps> = ({ logoSrc, onAnimationComplete }) => {
   };
 
   return (
-    <div className="logo-container">
+    <>
       <motion.div
         className="fade-circle"
         initial={{ scale: 0, opacity: 0 }}
@@ -56,7 +56,7 @@ const Logo: React.FC<LogoProps> = ({ logoSrc, onAnimationComplete }) => {
       <div className="animated-text">
         <AnimatedCharacters text="SHODAMAD" delay={2} />
       </div>
-    </div>
+    </>
   );
 };
 

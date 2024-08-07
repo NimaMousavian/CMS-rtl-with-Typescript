@@ -17,16 +17,23 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import HomeIcon from "@mui/icons-material/Home";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import CommentIcon from "@mui/icons-material/Comment";
-import OrderIcon from "@mui/icons-material/LocalShipping";
-import DiscountIcon from "@mui/icons-material/LocalOffer";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import PassengerIcon from "@mui/icons-material/AirplanemodeActive";
 import MapIcon from "@mui/icons-material/Map";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import MessageIcon from "@mui/icons-material/Message";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import StorageIcon from "@mui/icons-material/Storage";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PeopleIcon from "@mui/icons-material/People";
 import BreadCrumbs from "./BreadCrumbs";
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+
 
 const drawerWidth = 240;
 const closedDrawerWidth = 73;
@@ -39,14 +46,16 @@ interface ListItem {
 }
 
 const listItems: ListItem[] = [
-  { id: 1, title: "پیشخوان", link: "/", icon: <HomeIcon /> },
-  { id: 2, title: "محصولات", link: "/products", icon: <ShoppingCartIcon /> },
-  { id: 3, title: "کاربران", link: "/users", icon: <PeopleIcon /> },
-  { id: 4, title: "نظرات", link: "/comments", icon: <CommentIcon /> },
-  { id: 5, title: "سفارش ها", link: "/orders", icon: <OrderIcon /> },
-  { id: 6, title: "تخفیف ها", link: "/discounts", icon: <DiscountIcon /> },
-  { id: 7, title: "لیست مسافران", link: "/passengers", icon: <PassengerIcon /> },
-  { id: 8, title: "نقشه", link: "/map", icon: <MapIcon /> },
+  { id: 1, title: "پیشخوان", link: "/", icon: <DashboardIcon /> },
+  { id: 2, title: "لیست مسافران", link: "/passengers", icon: <EmojiPeopleIcon /> },
+  { id: 3, title: "نقشه", link: "/map", icon: <MapIcon /> },
+  { id: 4, title: "سرویس ها", link: "/services", icon: <DirectionsBusIcon /> },
+  { id: 5, title: "امور مالی", link: "/finance", icon: <MonetizationOnIcon /> },
+  { id: 6, title: "گزارش ها", link: "/reports", icon: <AssessmentIcon /> },
+  { id: 7, title: "پیام رسانی", link: "/messaging", icon: <MessageIcon /> },
+  { id: 8, title: "اطلاعات پایه", link: "/basic-info", icon: <StorageIcon /> },
+  { id: 9, title: "تنظیمات", link: "/settings", icon: <SettingsIcon /> },
+  { id: 10, title: "کاربران", link: "/users", icon: <PeopleIcon /> },
 ];
 
 interface Props {
@@ -61,9 +70,6 @@ const SideBar = ({ router, window }: Props) => {
     const savedOpen = localStorage.getItem("drawerOpen");
     return savedOpen ? JSON.parse(savedOpen) : false;
   });
-
-  const [imageHeight, setImageHeight] = React.useState(70); 
-  const [imageWidth, setImageWidth] = React.useState(70); 
 
   const openImage = "/images/logo/shodamad-logo-02.webp";
   const closedImage = "/images/logo/shodamad-logo-01.webp";
@@ -96,6 +102,7 @@ const SideBar = ({ router, window }: Props) => {
   };
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  const FIXED_IMAGE_HEIGHT = 70;
 
   const drawer = (
     <>
@@ -112,27 +119,26 @@ const SideBar = ({ router, window }: Props) => {
         </IconButton>
       </Toolbar>
 
-
-
-
       <Box
         component="img"
         src={open ? openImage : closedImage}
         alt="Menu Image"
         sx={{
           display: "block",
-          // padding: 2,
-          width: open ? "200px" :" auto",
-          height: 'auto',
-          margin: open ? '0 auto' : '0 auto',
-          transition: 'width 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          height: open ? FIXED_IMAGE_HEIGHT : FIXED_IMAGE_HEIGHT * 0.8, // کاهش ارتفاع در حالت بسته
+          width: 'auto',
+          maxWidth: open ? "200px" : "100%",
+          margin: '0 auto',
+          transition: 'max-width 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          objectFit: 'contain',
           ...(open
             ? {
               marginRight: "30px",
-              paddingBottom:"20px"
+              marginBottom: "10px",
             }
             : {
-              padding: "10px"
+              padding: "5px",
+              marginBottom: "5px",
             }),
         }}
       />
@@ -143,23 +149,33 @@ const SideBar = ({ router, window }: Props) => {
               component={Link}
               to={item.link}
               sx={{
-                minHeight: 48,
+                minHeight: open ? 48 : 45, // کاهش ارتفاع در حالت بسته
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
-
+                py: open ? 1 : 0.8, // کاهش بیشتر پدینگ عمودی در حالت بسته
               }}
             >
               <ListItemIcon
                 sx={{
                   minWidth: 0,
-                  mr: open ? 3 : "auto",
+                  mr: open ? 2 : "auto",
                   justifyContent: "center",
-                  paddingRight: "10px"
+                  "& .MuiSvgIcon-root": {
+                    fontSize: open ? 20 : 24, // کاهش بیشتر اندازه آیکون در حالت بسته
+                  },
                 }}
               >
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.title}
+                sx={{
+                  opacity: open ? 1 : 0,
+                  "& .MuiTypography-root": {
+                    fontSize: open ? 14 : 0, // اضافه کردن این خط برای کنترل اندازه متن
+                  }
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -195,7 +211,7 @@ const SideBar = ({ router, window }: Props) => {
           onClose={handleDrawerClose}
           onTransitionEnd={handleDrawerTransitionEnd}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -223,6 +239,13 @@ const SideBar = ({ router, window }: Props) => {
               overflowX: "hidden",
               transition: "width 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               height: `calc(100vh - 40px)`,
+              // اضافه کردن این استایل‌ها برای مخفی کردن نوار اسکرول
+              overflowY: "scroll",
+              scrollbarWidth: "none",  // برای Firefox
+              msOverflowStyle: "none",  // برای Internet Explorer 10+
+              "&::-webkit-scrollbar": {
+                display: "none"  // برای Chrome, Safari, و Opera
+              },
             },
           }}
           open={open}

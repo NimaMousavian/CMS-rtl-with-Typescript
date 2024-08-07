@@ -116,8 +116,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  text-align: center;
-  /* background-color: #f48320; */
+  width: 100vw;
   background-color: #23a6c1;
 }
 
