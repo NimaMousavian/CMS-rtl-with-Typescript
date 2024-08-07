@@ -61,21 +61,19 @@ const SideBar = ({ router, window }: Props) => {
     const savedOpen = localStorage.getItem("drawerOpen");
     return savedOpen ? JSON.parse(savedOpen) : false;
   });
-  const [openImage, setOpenImage] = React.useState(() => {
-    return localStorage.getItem("openImage") || "/images/logo/logo-05.png";
-  });
-  const [closedImage, setClosedImage] = React.useState(() => {
-    return localStorage.getItem("closedImage") || "/images/logo/logo-01.png";
-  });
+
+  const [imageHeight, setImageHeight] = React.useState(70); 
+  const [imageWidth, setImageWidth] = React.useState(70); 
+
+  const openImage = "/images/logo/shodamad-logo-02.webp";
+  const closedImage = "/images/logo/shodamad-logo-01.webp";
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   React.useEffect(() => {
     localStorage.setItem("drawerOpen", JSON.stringify(open));
-    localStorage.setItem("openImage", openImage);
-    localStorage.setItem("closedImage", closedImage);
-  }, [open, openImage, closedImage]);
+  }, [open]);
 
   const handleDrawerToggle = () => {
     if (!isClosing) {
@@ -109,16 +107,33 @@ const SideBar = ({ router, window }: Props) => {
           px: [1],
         }}
       >
-        <IconButton onClick={handleDrawerToggle} sx={{ fontSize: 20 }}>
+        <IconButton onClick={handleDrawerToggle} sx={{ fontSize: 20, marginLeft: "10px" }}>
           <MenuRoundedIcon sx={{ fontSize: "inherit" }} />
         </IconButton>
       </Toolbar>
+
+
+
+
       <Box
         component="img"
         src={open ? openImage : closedImage}
         alt="Menu Image"
         sx={{
           display: "block",
+          // padding: 2,
+          width: open ? "200px" :" auto",
+          height: 'auto',
+          margin: open ? '0 auto' : '0 auto',
+          transition: 'width 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          ...(open
+            ? {
+              marginRight: "30px",
+              paddingBottom:"20px"
+            }
+            : {
+              padding: "10px"
+            }),
         }}
       />
       <List>
@@ -131,6 +146,7 @@ const SideBar = ({ router, window }: Props) => {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+
               }}
             >
               <ListItemIcon
@@ -138,6 +154,7 @@ const SideBar = ({ router, window }: Props) => {
                   minWidth: 0,
                   mr: open ? 3 : "auto",
                   justifyContent: "center",
+                  paddingRight: "10px"
                 }}
               >
                 {item.icon}

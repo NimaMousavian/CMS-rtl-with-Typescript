@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000); 
+    }, 4500); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -41,7 +41,7 @@ function App() {
           {loading ? (
             <div className="loading-container">
               <Logo
-                logoSrc="/images/logo/logo-01.png"
+                logoSrc="/images/logo/shodamad-logo-gray.webp"
                 onAnimationComplete={() => { }}
               />
             </div>
