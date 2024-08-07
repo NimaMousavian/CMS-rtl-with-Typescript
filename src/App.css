@@ -91,3 +91,35 @@
     width: inherit;
 }
 
+
+/* src/App.css */
+/* src/App.css or a similar global stylesheet */
+@font-face {
+  font-family: 'Conthrax';
+  src: url('./fonts/Conthrax/conthrax-sb.otf') format('opentype');
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Conthrax', sans-serif;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.text-container {
+  margin-top: 20px; /* Adjust as needed */
+  font-family: 'Conthrax', sans-serif; /* Apply font to the text container */
+}

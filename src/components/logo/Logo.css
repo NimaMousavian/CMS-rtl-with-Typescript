@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Conthrax';
+  src: url('/src/fonts/Conthrax/conthrax-sb.otf') format('opentype');
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.fade-circle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: white;
+  z-index: 1;
+}
+
+.logo-image {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+}
+
+.animated-text {
+  position: absolute;
+  right: calc(50% - 170px); 
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  font-family: 'Conthrax', sans-serif;
+  font-size: 40px;
+  color: #000;
+  direction: rtl;
+  text-align: right;
+}

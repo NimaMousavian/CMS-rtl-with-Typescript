@@ -31,44 +31,51 @@ import BreadCrumbs from "./BreadCrumbs";
 const drawerWidth = 240;
 const closedDrawerWidth = 73;
 
-interface IListItem {
+interface ListItem {
   id: number;
   title: string;
   link: string;
   icon: JSX.Element;
 }
 
-const listItems: IListItem[] = [
+const listItems: ListItem[] = [
   { id: 1, title: "پیشخوان", link: "/", icon: <HomeIcon /> },
   { id: 2, title: "محصولات", link: "/products", icon: <ShoppingCartIcon /> },
   { id: 3, title: "کاربران", link: "/users", icon: <PeopleIcon /> },
   { id: 4, title: "نظرات", link: "/comments", icon: <CommentIcon /> },
   { id: 5, title: "سفارش ها", link: "/orders", icon: <OrderIcon /> },
   { id: 6, title: "تخفیف ها", link: "/discounts", icon: <DiscountIcon /> },
-  {
-    id: 7,
-    title: "لیست مسافران",
-    link: "/passengers",
-    icon: <PassengerIcon />,
-  },
+  { id: 7, title: "لیست مسافران", link: "/passengers", icon: <PassengerIcon /> },
   { id: 8, title: "نقشه", link: "/map", icon: <MapIcon /> },
 ];
 
 interface Props {
-  router: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  > | null;
+  router: React.ReactElement<any, string | React.JSXElementConstructor<any>> | null;
   window?: () => Window;
 }
 
 const SideBar = ({ router, window }: Props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(() => {
+    const savedOpen = localStorage.getItem("drawerOpen");
+    return savedOpen ? JSON.parse(savedOpen) : false;
+  });
+  const [openImage, setOpenImage] = React.useState(() => {
+    return localStorage.getItem("openImage") || "/images/logo/logo-05.png";
+  });
+  const [closedImage, setClosedImage] = React.useState(() => {
+    return localStorage.getItem("closedImage") || "/images/logo/logo-01.png";
+  });
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  React.useEffect(() => {
+    localStorage.setItem("drawerOpen", JSON.stringify(open));
+    localStorage.setItem("openImage", openImage);
+    localStorage.setItem("closedImage", closedImage);
+  }, [open, openImage, closedImage]);
 
   const handleDrawerToggle = () => {
     if (!isClosing) {
@@ -90,8 +97,7 @@ const SideBar = ({ router, window }: Props) => {
     setIsClosing(false);
   };
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   const drawer = (
     <>
@@ -109,7 +115,7 @@ const SideBar = ({ router, window }: Props) => {
       </Toolbar>
       <Box
         component="img"
-        src={open ? "/images/logo/logo-05.png" : "/images/logo/logo-01.png"}
+        src={open ? openImage : closedImage}
         alt="Menu Image"
         sx={{
           display: "block",
@@ -136,10 +142,7 @@ const SideBar = ({ router, window }: Props) => {
               >
                 {item.icon}
               </ListItemIcon>
-              <ListItemText
-                primary={item.title}
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -153,11 +156,7 @@ const SideBar = ({ router, window }: Props) => {
       <AppBar
         position="fixed"
         sx={{
-          width: {
-            sm: `calc(100% - ${
-              open ? drawerWidth + 20 : closedDrawerWidth + 20
-            }px)`,
-          },
+          width: { sm: `calc(100% - ${open ? drawerWidth + 20 : closedDrawerWidth + 20}px)` },
           ml: { sm: `${open ? drawerWidth : closedDrawerWidth}px` },
         }}
       >
@@ -169,10 +168,7 @@ const SideBar = ({ router, window }: Props) => {
       </AppBar>
       <Box
         component="nav"
-        sx={{
-          width: { sm: open ? drawerWidth : closedDrawerWidth },
-          flexShrink: { sm: 0 },
-        }}
+        sx={{ width: { sm: open ? drawerWidth : closedDrawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -208,7 +204,7 @@ const SideBar = ({ router, window }: Props) => {
               borderRadius: "16px",
               border: "1px solid #ddd",
               overflowX: "hidden",
-              transition: "width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+              transition: "width 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               height: `calc(100vh - 40px)`,
             },
           }}
@@ -222,9 +218,7 @@ const SideBar = ({ router, window }: Props) => {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: {
-            sm: `calc(100% - ${open ? drawerWidth : closedDrawerWidth}px)`,
-          },
+          width: { sm: `calc(100% - ${open ? drawerWidth : closedDrawerWidth}px)` },
           mt: 2,
         }}
       >
